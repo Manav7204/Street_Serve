@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Requirements - StreetFoodChain</title>
+    <style>
+        /* --- General Setup & Variables --- */
+        :root {
+            --primary-color: #28a745;
+            --primary-dark: #218838;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+            --text-light: #6c757d;
+            --border-color: #dee2e6;
+            --card-bg: #ffffff;
+            --badge-date-bg: #d4edda;
+            --badge-date-text: #155724;
+            --badge-ai-bg: #fff3cd;
+            --badge-ai-text: #856404;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background: var(--card-bg);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--text-dark);
+        }
+        
+        .nav-link.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* --- Main Container & Page Header --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            text-align: center;
+            border: none;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* --- Requirement Sections & Cards --- */
+        .requirements-section {
+            margin-bottom: 3rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        @keyframes highlight-new {
+            0% { background-color: #f0fff4; }
+            100% { background-color: var(--card-bg); }
+        }
+
+        .card.newly-added {
+            animation: highlight-new 2.5s ease-out;
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            background-color: #eee;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-details {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            padding: 0.3rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .badge-date {
+            background-color: var(--badge-date-bg);
+            color: var(--badge-date-text);
+        }
+
+        .badge-ai {
+            background-color: var(--badge-ai-bg);
+            color: var(--badge-ai-text);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        /* --- Modal --- */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: var(--radius);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-light);
+            line-height: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 1rem;
+        }
+        
+        .image-preview {
+            max-width: 100%;
+            max-height: 200px;
+            margin-top: 10px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            display: none; /* Hidden by default */
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo" onclick="window.location.href='index.html'" >StreetFoodChain</div>
+        <nav class="nav">
+            <a href="/maketplace.html" class="nav-link">Marketplace</a>
+            <a href="/requirements.html" class="nav-link active">Requirements</a>
+            <a href="#" class="nav-link">Track Delivery</a>
+            <a href="/supplier.html" class="nav-link">Register as Supplier</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Vendor Requirements</h1>
+            <button class="btn btn-primary" id="addRequirementBtn">+ Add Requirement</button>
+        </div>
+
+        <!-- Section for Newly Added Items -->
+        <section class="requirements-section" id="newlyAddedSection" style="display: none;">
+            <div class="section-header">
+                <h2 class="section-title">Newly Added</h2>
+            </div>
+            <div class="cards-grid" id="newlyAddedGrid">
+                <!-- New cards will be injected here -->
+            </div>
+        </section>
+
+        <!-- Section for Existing Items -->
+        <section class="requirements-section">
+            <div class="section-header">
+                <h2 class="section-title">All Requirements</h2>
+            </div>
+            <div class="cards-grid" id="availableGrid">
+                <!-- Cards will be injected here -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Add Requirement Modal -->
+    <div class="modal" id="addRequirementModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add New Requirement</h3>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <form id="requirementForm">
+                <div class="form-group">
+                    <label for="itemName" class="form-label">Item Name</label>
+                    <input type="text" id="itemName" class="form-input" placeholder="e.g., Organic Blueberries" required>
+                </div>
+                 <div class="form-group">
+                    <label for="imageInput" class="form-label">Item Image</label>
+                    <input type="file" id="imageInput" class="form-input" accept="image/*">
+                    <img id="imagePreview" class="image-preview" alt="Image Preview">
+                </div>
+                <div class="form-group">
+                    <label for="quantity" class="form-label">Quantity (kg)</label>
+                    <input type="number" id="quantity" class="form-input" placeholder="50" required>
+                </div>
+                 <div class="form-group">
+                    <label for="maxPrice" class="form-label">Max Price (₹ per kg)</label>
+                    <input type="number" id="maxPrice" class="form-input" placeholder="700" required>
+                </div>
+                <div class="modal-actions">
+                     <button type="button" class="btn btn-outline" id="cancelBtn">Cancel</button>
+                     <button type="submit" class="btn btn-primary">Post Requirement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- DOM Elements ---
+            const availableGrid = document.getElementById('availableGrid');
+            const newlyAddedGrid = document.getElementById('newlyAddedGrid');
+            const newlyAddedSection = document.getElementById('newlyAddedSection');
+            
+            // Modal elements
+            const modal = document.getElementById('addRequirementModal');
+            const addRequirementBtn = document.getElementById('addRequirementBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const requirementForm = document.getElementById('requirementForm');
+            const imageInput = document.getElementById('imageInput');
+            const imagePreview = document.getElementById('imagePreview');
+
+            // --- Initial Data ---
+            const initialRequirements = [
+                {
+                    id: 1,
+                    title: "Need Potatoes",
+                    imageUrl: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+                    quantity: 100,
+                    location: 'Mumbai',
+                    price: 250,
+                    date: '28 Jul',
+                    trustScore: 90
+                },
+                {
+                    id: 2,
+                    title: "Need Tomatoes",
+                    imageUrl: 'https://images.unsplash.com/photo-1582284540020-8acbe03f4924?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+                    quantity: 40,
+                    location: 'Pune',
+                    price: 160,
+                    date: '27 Jul',
+                    trustScore: 82
+                },
+                {
+                    id: 3,
+                    title: "Need Red Onions",
+                    imageUrl: 'https://images.unsplash.com/photo-1587049352851-d481b315a5d0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400',
+                    quantity: 60,
+                    location: 'Thane',
+                    price: 200,
+                    date: '26 Jul',
+                    trustScore: 88
+                }
+            ];
+
+            // --- Functions ---
+            const createRequirementCard = (req) => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.dataset.id = req.id;
+
+                card.innerHTML = `
+                    <img src="${req.imageUrl}" alt="${req.title}" class="card-image" onerror="this.onerror=null;this.src='https://placehold.co/400x200/eee/ccc?text=Image+Not+Found';">
+                    <div class="card-content">
+                        <h3 class="card-title">${req.title}</h3>
+                        <p class="card-details">${req.quantity}kg • ${req.location} • Max ₹${req.price}/kg</p>
+                        <div class="card-meta">
+                            <span class="badge badge-date">${req.date}</span>
+                            <span class="badge badge-ai">AI Trust: ${req.trustScore}</span>
+                        </div>
+                        <div class="card-actions">
+                            <button class="btn btn-primary">Bid</button>
+                            <button class="btn btn-outline">Details</button>
+                        </div>
+                    </div>
+                `;
+                return card;
+            };
+
+            const renderRequirements = (requirements, gridContainer) => {
+                gridContainer.innerHTML = ''; // Clear existing cards
+                requirements.forEach(req => {
+                    const card = createRequirementCard(req);
+                    gridContainer.appendChild(card);
+                });
+            };
+
+            // --- Modal Logic ---
+            const openModal = () => modal.classList.add('active');
+            const closeModal = () => {
+                modal.classList.remove('active');
+                requirementForm.reset();
+                imagePreview.style.display = 'none'; // Hide preview on close
+                imagePreview.src = '';
+            };
+
+            addRequirementBtn.addEventListener('click', openModal);
+            closeModalBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+            
+            // --- Image Upload Logic ---
+            imageInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.style.display = 'none';
+                    imagePreview.src = '';
+                }
+            });
+
+            // --- Form Submission Logic ---
+            requirementForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const newRequirement = {
+                    id: Date.now(), // Unique ID
+                    title: `Need ${document.getElementById('itemName').value}`,
+                    imageUrl: imagePreview.src || 'https://placehold.co/400x200/eee/ccc?text=No+Image', // Use uploaded image or placeholder
+                    quantity: document.getElementById('quantity').value,
+                    location: 'Navi Mumbai', // Set to current location
+                    price: document.getElementById('maxPrice').value,
+                    date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+                    trustScore: Math.floor(Math.random() * (95 - 75 + 1)) + 75
+                };
+
+                const newCard = createRequirementCard(newRequirement);
+                newlyAddedGrid.prepend(newCard);
+                
+                if (newlyAddedSection.style.display === 'none') {
+                    newlyAddedSection.style.display = 'block';
+                }
+
+                newCard.classList.add('newly-added');
+                setTimeout(() => {
+                    newCard.classList.remove('newly-added');
+                }, 2500);
+
+                closeModal();
+            });
+
+            // --- Initial Render ---
+            renderRequirements(initialRequirements, availableGrid);
+
+        });
+    </script>
+</body>
+</html>
