@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Dashboard - Street Food Supply Chain</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Top Navbar -->
+    <nav class="navbar modern-nav">
+        <span class="navbar-logo">StreetFoodChain</span>
+        <ul class="navbar-menu">
+            <li><a href="#" class="active">Marketplace</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Track Delivery</a></li>
+            <li><a href="#">Register as Supplier</a></li>
+        </ul>
+        <button class="filter-btn" id="openFilters">
+            <img src="https://cdn-icons-png.flaticon.com/512/54/54481.png" alt="Filter" />Filters
+        </button>
+    </nav>
+
+    <!-- Filters Modal -->
+    <div class="modal-backdrop" id="filtersBackdrop"></div>
+    <section class="filters-modal" id="filtersModal">
+        <div class="filters-header">
+            <span>Filter Options</span>
+            <button id="closeFilters">&times;</button>
+        </div>
+        <form class="filters-form">
+            <label>Price Range:
+                <input type="text" placeholder="Min-Max (e.g., 100-500)" />
+            </label>
+            <label>Quantity:
+                <input type="text" placeholder="Min Qty (e.g., 50kg)" />
+            </label>
+            <label>Location:
+                <select>
+                    <option value="">Any</option>
+                    <option>Andheri</option>
+                    <option>Dadar</option>
+                    <option>Navi Mumbai</option>
+                </select>
+            </label>
+            <label>Delivery Options:
+                <select>
+                    <option value="">Any</option>
+                    <option>Same Day</option>
+                    <option>Next Day</option>
+                    <option>Pickup</option>
+                </select>
+            </label>
+            <label>Trust Score (AI):
+                <select>
+                    <option value="">Any</option>
+                    <option>High (80+)</option>
+                    <option>Medium (50-79)</option>
+                    <option>Low (&lt;50)</option>
+                </select>
+            </label>
+            <button type="submit" class="btn-primary" style="margin-top:1rem;width:100%;">Apply & Search</button>
+        </form>
+    </section>
+
+    <main class="ui-main">
+        <div class="header-row">
+            <h1>Marketplace</h1>
+            <!-- Searchbar like e-commerce -->
+            <div class="searchbar">
+                <input type="text" placeholder="Search items or requirements..." />
+                <button>
+                    <img src="https://cdn-icons-png.flaticon.com/512/622/622669.png" alt="Search" style="width:18px" />
+                </button>
+            </div>
+            <!-- Your Orders summary -->
+            <div class="orders-summary">
+                <span>Your Orders</span>
+                <span class="orders-count" id="ordersCount">5</span>
+                <button class="toggle-orders" id="showOrdersBtn">Show</button>
+            </div>
+        </div>
+
+        <section class="orders-drawer" id="ordersDrawer">
+            <h3>Your Orders</h3>
+            <div class="orders-columns">
+                <div><strong>Pending</strong>
+                    <ul>
+                        <li>Potatoes - 50kg (Pending)</li>
+                        <li>Tomatoes - 30kg (Awaiting Confirmation)</li>
+                    </ul>
+                </div>
+                <div><strong>Purchased</strong>
+                    <ul>
+                        <li>Onions - 20kg (Delivered)</li>
+                    </ul>
+                </div>
+                <div><strong>Sold</strong>
+                    <ul>
+                        <li>Flour - 100kg (Sold)</li>
+                        <li>Spices - 10kg (Sold)</li>
+                    </ul>
+                </div>
+            </div>
+            <button class="toggle-orders" id="hideOrdersBtn">Close</button>
+        </section>
+
+        <!-- Marketplace Items (for Sale, dummy data) -->
+        <section>
+            <div class="section-heading">
+                <h2>Available for Purchase</h2>
+                <a href="#" class="view-more-btn">View All</a>
+            </div>
+            <div class="card-grid" id="marketplaceGrid">
+                <div class="item-card">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+                        alt="Potatoes" class="item-img">
+                    <div class="item-info">
+                        <h3 class="item-title">Fresh Potatoes</h3>
+                        <p class="item-meta">120kg • Andheri • ₹200/kg</p>
+                        <p class="item-meta">
+                            <span class="badge">Same Day</span>
+                            <span class="badge badge-ai">AI Trust: 85</span>
+                        </p>
+                        <div class="item-actions">
+                            <button class="btn-primary">Buy</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=400&q=80"
+                        alt="Tomatoes" class="item-img">
+                    <div class="item-info">
+                        <h3 class="item-title">Tomatoes</h3>
+                        <p class="item-meta">50kg • Dadar • ₹150/kg</p>
+                        <p class="item-meta">
+                            <span class="badge">Next Day</span>
+                            <span class="badge badge-ai">AI Trust: 92</span>
+                        </p>
+                        <div class="item-actions">
+                            <button class="btn-primary">Buy</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+                        alt="Onions" class="item-img">
+                    <div class="item-info">
+                        <h3 class="item-title">Red Onions</h3>
+                        <p class="item-meta">70kg • Navi Mumbai • ₹180/kg</p>
+                        <p class="item-meta">
+                            <span class="badge">Pickup</span>
+                            <span class="badge badge-ai">AI Trust: 78</span>
+                        </p>
+                        <div class="item-actions">
+                            <button class="btn-primary">Buy</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more dummy cards as needed -->
+            </div>
+        </section>
+
+        <!-- Vendor Requirements Section (dummy data) -->
+        <section>
+            <div class="section-heading">
+                <h2>Vendor Requirements</h2>
+                <a href="#" class="view-more-btn">View All</a>
+            </div>
+            <div class="card-grid" id="requirementsGrid">
+                <div class="item-card">
+                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80"
+                        alt="Potatoes Requirement" class="item-img">
+                    <div class="item-info">
+                        <h3 class="item-title">Need Potatoes</h3>
+                        <p class="item-meta">100kg • Mumbai • Max ₹250/kg</p>
+                        <p class="item-meta">
+                            <span class="badge">28 Jul</span>
+                            <span class="badge badge-ai">AI Trust: 90</span>
+                        </p>
+                        <div class="item-actions">
+                            <button class="btn-primary">Bid</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?auto=format&fit=crop&w=400&q=80"
+                        alt="Tomatoes Requirement" class="item-img">
+                    <div class="item-info">
+                        <h3 class="item-title">Need Tomatoes</h3>
+                        <p class="item-meta">40kg • Pune • Max ₹160/kg</p>
+                        <p class="item-meta">
+                            <span class="badge">27 Jul</span>
+                            <span class="badge badge-ai">AI Trust: 82</span>
+                        </p>
+                        <div class="item-actions">
+                            <button class="btn-primary">Bid</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80"
+                        alt="Onions Requirement" class="item-img">
+                    <div class="item-info">
+                        <h3 class="item-title">Need Red Onions</h3>
+                        <p class="item-meta">60kg • Thane • Max ₹200/kg</p>
+                        <p class="item-meta">
+                            <span class="badge">26 Jul</span>
+                            <span class="badge badge-ai">AI Trust: 88</span>
+                        </p>
+                        <div class="item-actions">
+                            <button class="btn-primary">Bid</button>
+                            <button class="btn-outline">Details</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- More dummy requirement cards as needed -->
+            </div>
+        </section>
+    </main>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
