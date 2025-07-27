@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street_Serve - Add Material</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo" onclick="goHome()">
+                <h1>Street_Serve</h1>
+                <span class="tagline">Add Material</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" onclick="location.href='supplier.html'">Back to Dashboard</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="form-section">
+                <h2>Add Material to Inventory</h2>
+                <form id="supplyForm" class="form" onsubmit="submitSupply(event)">
+                    <div class="form-group">
+                        <label for="materialName">Material Name *</label>
+                        <input type="text" id="materialName" name="materialName" required placeholder="e.g., Basmati Rice, Red Onions">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="availableQuantity">Available Quantity *</label>
+                        <input type="text" id="availableQuantity" name="availableQuantity" required placeholder="e.g., 500kg, 1000 pieces">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="pricePerUnit">Price per Unit *</label>
+                        <input type="text" id="pricePerUnit" name="pricePerUnit" required placeholder="e.g., ₹45 per kg">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="supplierLocation">Your Location *</label>
+                        <input type="text" id="supplierLocation" name="supplierLocation" required placeholder="e.g., Mumbai, Delhi">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="materialImage">Material Image</label>
+                        <input type="file" id="materialImage" name="materialImage" accept="image/*">
+                        <small>Upload an image of your material (optional)</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Quality details, certifications, etc..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="minOrder">Minimum Order Quantity</label>
+                        <input type="text" id="minOrder" name="minOrder" placeholder="e.g., 10kg minimum">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Add Material</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Street_Serve. Connecting vendors and suppliers.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>

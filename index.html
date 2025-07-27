@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street_Serve - Vendor Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo" onclick="goHome()">
+                <h1>Street_Serve</h1>
+                <span class="tagline">Vendor Dashboard</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" onclick="location.href='supplier.html'">Switch to Supplier</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="hero">
+                <h2>Welcome, Vendor!</h2>
+                <p>Find the best raw materials for your street food business</p>
+            </section>
+
+            <section class="actions">
+                <div class="action-grid">
+                    <div class="action-card" onclick="location.href='marketplace.html'">
+                        <div class="action-icon">🛒</div>
+                        <h3>Browse Marketplace</h3>
+                        <p>Find raw materials from suppliers</p>
+                    </div>
+                    
+                    <div class="action-card" onclick="location.href='post_requirement.html'">
+                        <div class="action-icon">📝</div>
+                        <h3>Post Requirement</h3>
+                        <p>Tell suppliers what you need</p>
+                    </div>
+                    
+                    <div class="action-card" onclick="location.href='supplier.html'">
+                        <div class="action-icon">🏪</div>
+                        <h3>Become a Supplier</h3>
+                        <p>Register to sell raw materials</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="recent-activity">
+                <h3>Recent Activity</h3>
+                <div class="activity-list">
+                    <div class="activity-item">
+                        <span class="activity-icon">✅</span>
+                        <div class="activity-content">
+                            <p><strong>Order Received:</strong> 50kg Rice from Supplier ABC</p>
+                            <small>2 hours ago</small>
+                        </div>
+                        <button class="review-btn" onclick="location.href='review.html'">Leave Review</button>
+                    </div>
+                    <div class="activity-item">
+                        <span class="activity-icon">📦</span>
+                        <div class="activity-content">
+                            <p><strong>Requirement Posted:</strong> 30kg Onions needed</p>
+                            <small>1 day ago</small>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Street_Serve. Connecting vendors and suppliers.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
