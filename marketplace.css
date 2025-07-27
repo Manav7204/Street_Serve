@@ -193,8 +193,15 @@ body {
   color: #f39c12;
 }
 
-.contact-btn {
-  width: 100%;
+.button-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.contact-btn,
+.buy-btn {
+  flex: 1;
   background: #ff6b35;
   color: white;
   border: none;
@@ -206,8 +213,16 @@ body {
   transition: all 0.3s ease;
 }
 
+.buy-btn {
+  background: #3498db;
+}
+
 .contact-btn:hover {
   background: #e55a2b;
+}
+
+.buy-btn:hover {
+  background: #2d80b3;
 }
 
 /* Pagination */

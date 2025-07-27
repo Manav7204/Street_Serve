@@ -148,7 +148,10 @@ function createMaterialCard(material) {
                 <span class="stars">${stars}</span>
                 <span>${material.trustScore} (${material.supplier})</span>
             </div>
-            <button class="contact-btn" onclick="contactSupplier('${material.supplier}')">Contact Supplier</button>
+            <div class="button-group">
+              <button class="contact-btn" onclick="contactSupplier('${material.supplier}')">Contact Supplier</button>
+               <button class="buy-btn" onclick="buyMaterial('${material.name}')">Buy Now</button>
+            </div>
         </div>
     `
 
