@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street_Serve - Sales History</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo" onclick="goHome()">
+                <h1>Street_Serve</h1>
+                <span class="tagline">Sales History</span>
+            </div>
+            <nav class="nav">
+                <button class="nav-btn" onclick="location.href='supplier.html'">Back to Dashboard</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <section class="sales-header">
+                <h2>Your Posted Materials</h2>
+                <p>Track your inventory and sales performance</p>
+            </section>
+
+            <section class="sales-content">
+                <div id="salesGrid" class="materials-grid">
+                    <!-- Sales history will be loaded dynamically -->
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Street_Serve. Connecting vendors and suppliers.</p>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
