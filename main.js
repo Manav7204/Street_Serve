@@ -369,3 +369,31 @@ function formatCurrency(amount) {
     currency: "INR",
   }).format(amount)
 }
+// ADD-Product
+document.getElementById("productForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append("materialName", document.getElementById("materialName").value);
+  formData.append("availableQuantity", document.getElementById("availableQuantity").value);
+  formData.append("pricePerUnit", document.getElementById("pricePerUnit").value);
+  formData.append("supplierLocation", document.getElementById("supplierLocation").value);
+  formData.append("description", document.getElementById("description").value);
+  formData.append("minOrder", document.getElementById("minOrder").value);
+  const imageInput = document.getElementById("image");
+  if (imageInput.files.length > 0) {
+    formData.append("image", imageInput.files[0]);
+  }
+
+  const res = await fetch("http://localhost:8000/add_product", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (res.ok) {
+    alert("Product added");
+    window.location.href = "marketplace.html";
+  } else {
+    alert("Failed to add product");
+  }
+});
